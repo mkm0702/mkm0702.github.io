@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manish Kumar Milan – Robotics engineer</title>
+<meta name="description" content="Manish Kumar Milan, M.Tech Robotics at IIT Jodhpur. Robot learning, manipulation and embedded systems: a notebook page-turning machine, human-in-the-loop RL, a fine-tuned VLA and an autonomous mobile robot.">
+<meta name="author" content="Manish Kumar Milan">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#D5D8D4">
+<link rel="canonical" href="https://mkm0702.github.io/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- Link previews (LinkedIn, WhatsApp, X). If your username changes, update these URLs. -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Manish Kumar Milan – Robotics engineer">
+<meta property="og:description" content="M.Tech Robotics at IIT Jodhpur. Robot learning, manipulation and embedded systems.">
+<meta property="og:url" content="https://mkm0702.github.io/">
+<meta property="og:image" content="https://mkm0702.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Manish Kumar Milan",
+  "url": "https://mkm0702.github.io/",
+  "email": "mailto:mkm16207@gmail.com",
+  "jobTitle": "Robotics engineer",
+  "affiliation": { "@type": "CollegeOrUniversity", "name": "Indian Institute of Technology Jodhpur" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Assam University, Silchar" },
+  "sameAs": ["https://github.com/mkm0702", "https://www.linkedin.com/in/manish-kumar-milan/"],
+  "knowsAbout": ["Robot learning", "Reinforcement learning", "Vision-language-action models", "Robotic manipulation", "ROS2", "Embedded systems", "Pneumatics"]
+}
+</script>
+
+<style>
+/* ==========================================================================
+   Tokens
+   Colours follow RAL machine paints: 7035 cabinet grey, 7016 anthracite,
+   and an industrial-robot yellow. Panels sit in an "extrusion" frame: the
+   gap between panels is a rail with a groove down its centre.
+   ========================================================================== */
+:root {
+  --cabinet: #D5D8D4;      /* page / rails (RAL 7035 light grey) */
+  --groove: #B3B9B4;       /* centre groove of each rail */
+  --panel: #FFFFFF;
+  --panel-2: #F1F3F0;      /* inset fills */
+  --line: #E2E5E1;         /* dividers inside panels */
+  --ink: #2C3236;          /* text (RAL 7016 anthracite) */
+  --ink-2: #555D63;        /* secondary text */
+  --yellow: #F2C200;       /* robot yellow: the only accent */
+  --yellow-hover: #E2B400;
+  --yellow-deep: #C49A00;  /* link underlines on white */
+  --green: #00875A;        /* "running" status light */
+
+  --ring: 6px;                              /* half a rail */
+  --rail: calc(var(--ring) * 2 + 1px);      /* gap = ring + groove + ring */
+  --r-panel: 4px;
+  --r-ctrl: 3px;
+  --pad: clamp(18px, 2.6vw, 34px);
+  --max: 1320px;
+
+  --font: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --math: "Times New Roman", Times, serif;
+}
+@media (max-width: 559px) { :root { --ring: 4px; } }
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  margin: 0;
+  background: var(--cabinet);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, video, svg, iframe { display: block; max-width: 100%; }
+h1, h2, h3, h4 { margin: 0; line-height: 1.12; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+ul, ol { margin: 0; }
+button { font: inherit; color: inherit; }
+
+/* Inline links inside running text */
+:where(p, li, dd, figcaption) a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: var(--yellow-deep);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  border-radius: 1px;
+}
+:where(p, li, dd, figcaption) a:hover { background: var(--yellow); text-decoration-color: var(--ink); }
+
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.skip {
+  position: absolute; left: 12px; top: -60px; z-index: 50;
+  background: var(--yellow); color: var(--ink); padding: 10px 14px; border-radius: var(--r-ctrl);
+  font-weight: 700; text-decoration: none;
+}
+.skip:focus { top: 12px; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding-inline: clamp(14px, 3vw, 32px); }
+.muted { color: var(--ink-2); }
+
+/* ==========================================================================
+   Type scale (14 / 17 / 21 / 24 / 36 / 72+), set in Archivo's width axis
+   ========================================================================== */
+.h-name {
+  font-size: clamp(2.9rem, 7.4vw, 6rem);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: .9;
+  letter-spacing: -.02em;
+}
+.h2 { font-size: clamp(1.75rem, 3.4vw, 2.25rem); font-weight: 750; font-stretch: 118%; letter-spacing: -.01em; }
+.h3 { font-size: clamp(1.25rem, 1.9vw, 1.5rem); font-weight: 700; font-stretch: 108%; line-height: 1.18; }
+.h4 { font-size: 1.0625rem; font-weight: 700; font-stretch: 110%; line-height: 1.25; }
+.lede { font-size: clamp(1.125rem, 1.75vw, 1.3125rem); line-height: 1.5; max-width: 31em; }
+
+/* ==========================================================================
+   The rig: a 12-column grid of panels mounted on rails
+   ========================================================================== */
+.rig { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--rail); }
+:where(.rig) > * { grid-column: span 12; }
+
+.panel {
+  background: var(--panel);
+  border-radius: var(--r-panel);
+  min-width: 0;
+  /* ring of rail colour, then a 1px groove: neighbours' grooves land on the same pixel row */
+  box-shadow: 0 0 0 var(--ring) var(--cabinet), 0 0 0 calc(var(--ring) + 1px) var(--groove);
+}
+.pad { padding: var(--pad); }
+
+/* Column spans, mobile first. Later breakpoints win. */
+@media (min-width: 560px) {
+  .sm-6 { grid-column: span 6; }
+  .sm-12 { grid-column: span 12; }
+}
+@media (min-width: 760px) {
+  .md-4 { grid-column: span 4; }
+  .md-6 { grid-column: span 6; }
+  .md-8 { grid-column: span 8; }
+  .md-12 { grid-column: span 12; }
+}
+@media (min-width: 1080px) {
+  .lg-3 { grid-column: span 3; }
+  .lg-4 { grid-column: span 4; }
+  .lg-5 { grid-column: span 5; }
+  .lg-6 { grid-column: span 6; }
+  .lg-7 { grid-column: span 7; }
+  .lg-8 { grid-column: span 8; }
+  .lg-12 { grid-column: span 12; }
+}
+
+/* A row of panels that keeps list semantics but sits on the parent's columns */
+.rig-row {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: subgrid;
+  gap: var(--rail);
+  margin: 0; padding: 0; list-style: none;
+}
+:where(.rig-row) > * { grid-column: span 12; }
+
+/* ==========================================================================
+   Controls
+   ========================================================================== */
+.btn {
+  display: inline-flex; align-items: center; gap: .5em;
+  min-height: 44px; padding: 0 1.05em;
+  border: 1.5px solid var(--groove); border-radius: var(--r-ctrl);
+  background: var(--panel); color: var(--ink);
+  font-weight: 650; font-stretch: 106%; font-size: .9375rem;
+  text-decoration: none; white-space: nowrap; cursor: pointer;
+}
+.btn:hover { border-color: var(--ink); }
+.btn:active { transform: translateY(1px); }
+.btn-y { background: var(--yellow); border-color: var(--yellow); }
+.btn-y:hover { background: var(--yellow-hover); border-color: var(--yellow-hover); }
+.btn svg { width: 17px; height: 17px; flex: none; }
+.btn-sm { min-height: 38px; padding: 0 .9em; font-size: .875rem; }
+
+.link-btn {
+  appearance: none; border: 0; background: none; padding: 0; cursor: pointer;
+  font-weight: 650; color: var(--ink);
+  text-decoration: underline; text-decoration-color: var(--yellow-deep);
+  text-decoration-thickness: 2px; text-underline-offset: 3px;
+}
+.link-btn:hover { background: var(--yellow); text-decoration-color: var(--ink); }
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+.nav { position: sticky; top: 0; z-index: 30; background: var(--panel); box-shadow: 0 1px 0 var(--groove); }
+.nav-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 62px; }
+.brand {
+  display: inline-flex; align-items: center; gap: 11px;
+  color: var(--ink); text-decoration: none;
+  font-weight: 750; font-stretch: 114%; font-size: 1.02rem; letter-spacing: -.005em;
+}
+.brand svg { width: 24px; height: 24px; color: var(--ink); }
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-links a:not(.btn) {
+  padding: 8px 10px; border-radius: var(--r-ctrl);
+  color: var(--ink); text-decoration: none; font-weight: 560; font-size: .9375rem;
+}
+.nav-links a:not(.btn):hover { background: var(--panel-2); }
+.nav-links a[aria-current="true"] { box-shadow: inset 0 -3px 0 var(--yellow); border-radius: var(--r-ctrl) var(--r-ctrl) 0 0; }
+.nav-links .btn { margin-left: 10px; }
+.nav-toggle {
+  display: none; align-items: center; gap: 8px;
+  min-height: 40px; padding: 0 12px; border: 1.5px solid var(--groove); border-radius: var(--r-ctrl);
+  background: var(--panel); font-weight: 650; cursor: pointer;
+}
+.nav-toggle span { display: block; width: 16px; height: 2px; background: var(--ink); box-shadow: 0 -5px 0 var(--ink), 0 5px 0 var(--ink); }
+@media (max-width: 939px) {
+  .nav-toggle { display: inline-flex; }
+  .nav-links {
+    display: none; position: absolute; left: 0; right: 0; top: 100%;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--panel); padding: 6px clamp(14px, 3vw, 32px) 16px;
+    box-shadow: 0 1px 0 var(--groove);
+  }
+  .nav.is-open .nav-links { display: flex; }
+  .nav-links a:not(.btn) { padding: 12px 6px; border-bottom: 1px solid var(--line); border-radius: 0; }
+  .nav-links a[aria-current="true"] { box-shadow: inset 4px 0 0 var(--yellow); padding-left: 14px; }
+  .nav-links .btn { margin: 14px 0 0; justify-content: center; }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero { padding-top: 22px; }
+.hero-text {
+  display: flex; flex-direction: column; justify-content: space-between; gap: 30px;
+  padding: clamp(26px, 4.4vw, 60px) var(--pad) var(--pad);
+}
+.hero-text .lede { margin-top: 22px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.hero-fig { margin: 0; display: flex; flex-direction: column; overflow: hidden; }
+.arm {
+  width: 100%; height: auto; max-height: 470px; flex: 1; cursor: crosshair;
+  background-color: var(--panel);
+  background-image: linear-gradient(#E7EAE6 1px, transparent 1px), linear-gradient(90deg, #E7EAE6 1px, transparent 1px);
+  background-size: 20px 20px; background-position: center;
+  touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+.arm-reach { fill: none; stroke: var(--groove); stroke-width: 1.5; stroke-dasharray: 2 7; stroke-linecap: round; }
+.arm-ground, .arm-hatch { stroke: var(--ink); stroke-width: 2; }
+.arm-hatch { stroke-width: 1.5; }
+.arm-ink { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.arm-ann { fill: none; stroke: var(--ink-2); stroke-width: 1.25; }
+.arm-dash { stroke-dasharray: 4 4; }
+.arm-link-o { stroke: var(--ink); stroke-linecap: round; }
+.arm-link-i { stroke: var(--yellow); stroke-linecap: round; }
+.arm-metal { fill: var(--ink); }
+.arm-bolt { fill: var(--cabinet); }
+.arm-theta { font: italic 18px var(--math); fill: var(--ink-2); text-anchor: middle; dominant-baseline: middle; }
+.arm-target { fill: none; stroke: var(--ink); stroke-width: 1.5; opacity: 0; transition: opacity .2s; }
+.arm-target.on { opacity: 1; }
+
+.fig-cap {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px;
+  padding: 14px var(--pad) 18px; border-top: 1px solid var(--line);
+  font-size: .875rem; color: var(--ink-2);
+}
+.fig-cap > span:first-child { flex: 1 1 22em; }
+.readout { display: inline-flex; gap: 14px; font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap; }
+.readout b { font-weight: 650; }
+.fig-cap .link-btn { font-size: .875rem; }
+
+.glance p { font-size: 1rem; line-height: 1.5; }
+.glance strong { font-weight: 750; font-stretch: 112%; }
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+.sec { padding-top: clamp(60px, 8.5vw, 108px); }
+.sec-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 8px 32px; margin-bottom: 26px;
+}
+.sec-sub { color: var(--ink-2); max-width: 44em; }
+
+/* Video slots ------------------------------------------------------------- */
+.media { position: relative; display: grid; aspect-ratio: 16 / 10; background: var(--panel-2); border-radius: var(--r-panel) var(--r-panel) 0 0; }
+.media[data-fit="natural"] { aspect-ratio: 16 / 9; border-radius: var(--r-panel); }
+.media.is-ready { overflow: hidden; }
+.media > video, .media > iframe, .media > .media-play {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: inherit;
+}
+.media > video { object-fit: cover; background: var(--panel-2); }
+.media > video.contain { object-fit: contain; }
+.media.is-ready > .media-ph { display: none; }
+.media[data-empty="hide"]:not(.is-ready) { display: none; }
+
+.media-ph {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  padding: 28px; text-align: center; color: var(--ink-2);
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: center;
+  border-radius: inherit;
+}
+.media-ph svg { width: 52px; height: 52px; color: var(--ink); }
+.media-ph p { max-width: 24em; background: var(--panel-2); padding: 2px 8px; border-radius: 2px; }
+
+.media-play { padding: 0; cursor: pointer; background: var(--ink); overflow: hidden; }
+.media-play img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); opacity: .92; }
+.media-play-icon {
+  position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px;
+  border-radius: 50%; background: var(--yellow);
+}
+.media-play-icon::after {
+  content: ""; position: absolute; left: 25px; top: 20px;
+  border-style: solid; border-width: 12px 0 12px 19px; border-color: transparent transparent transparent var(--ink);
+}
+.media-play:hover .media-play-icon { background: var(--yellow-hover); }
+
+/* Featured machine -------------------------------------------------------- */
+.ptm-video { overflow: hidden; }
+.ptm-note { display: flex; flex-direction: column; gap: 16px; }
+.ptm-note .when { font-size: .9375rem; color: var(--ink-2); }
+.ptm-note .links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px 20px; font-weight: 650; }
+
+.step { display: flex; flex-direction: column; gap: 8px; }
+.step-n {
+  display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--yellow); font-weight: 800; font-stretch: 112%; font-size: 1rem; margin-bottom: 6px;
+}
+.step p, .spec p { font-size: 1rem; color: var(--ink-2); }
+.spec { display: flex; flex-direction: column; gap: 8px; }
+
+/* Project cards ----------------------------------------------------------- */
+.proj { display: flex; flex-direction: column; }
+.proj-body { display: flex; flex-direction: column; gap: 14px; padding: var(--pad); flex: 1; }
+.proj-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; font-size: .9375rem; color: var(--ink-2); margin-top: -4px; }
+.status { display: inline-flex; align-items: center; gap: 7px; font-weight: 650; color: var(--ink); }
+.status::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--ink-2); }
+.status.run::before { background: var(--green); box-shadow: 0 0 0 3px rgba(0, 135, 90, .16); }
+.facts { padding-left: 1.15em; display: grid; gap: 8px; }
+.facts li::marker { color: var(--ink-2); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; list-style: none; }
+.tags li { font-size: .8125rem; font-weight: 560; background: var(--panel-2); border-radius: 2px; padding: 3px 8px; }
+.proj-links { margin-top: auto; padding-top: 4px; display: flex; flex-wrap: wrap; gap: 8px 22px; font-weight: 650; }
+
+.proj-wide { display: grid; grid-template-columns: minmax(0, 1fr); }
+.proj-wide .proj-main { display: flex; flex-direction: column; }
+.proj-wide .proj-links { margin-top: 0; }
+.caps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 0 var(--pad) var(--pad); align-content: start; }
+.cap { background: var(--panel-2); border-radius: var(--r-ctrl); padding: 14px 16px; }
+.cap p { font-size: .9375rem; color: var(--ink-2); margin-top: 4px; }
+@media (min-width: 560px) {
+  .caps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cap:last-child:nth-child(odd) { grid-column: span 2; }
+}
+@media (min-width: 1080px) {
+  .proj-wide { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .caps { padding: var(--pad) var(--pad) var(--pad) 0; }
+}
+
+/* Experience -------------------------------------------------------------- */
+.job { display: flex; flex-direction: column; gap: 14px; }
+.job-org { color: var(--ink-2); margin-top: -6px; }
+.job .links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px 20px; font-weight: 650; }
+
+/* Education --------------------------------------------------------------- */
+.edu { list-style: none; padding: 0; }
+.edu li {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px 20px;
+  padding: 16px 0; border-top: 1px solid var(--line);
+}
+.edu li:first-child { border-top: 0; padding-top: 0; }
+.edu li:last-child { padding-bottom: 0; }
+.edu .yr { font-variant-numeric: tabular-nums; color: var(--ink-2); font-size: .9375rem; }
+.edu .where { color: var(--ink-2); font-size: .9375rem; margin-top: 2px; }
+.edu .score { font-weight: 650; font-variant-numeric: tabular-nums; }
+@media (min-width: 560px) {
+  .edu li { grid-template-columns: 8.5em minmax(0, 1fr) auto; align-items: baseline; }
+}
+.courses { display: flex; flex-direction: column; gap: 12px; }
+
+/* Skills ------------------------------------------------------------------ */
+.skill { display: flex; flex-direction: column; gap: 8px; }
+.skill p { color: var(--ink-2); }
+@media (min-width: 560px) and (max-width: 1079px) { .skill-wide { grid-column: span 12; } }
+
+/* Recognition ------------------------------------------------------------- */
+.plain-list { padding: 0; list-style: none; display: grid; gap: 10px; }
+.plain-list li { padding-left: 16px; position: relative; }
+.plain-list li::before { content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 7px; background: var(--yellow); border-radius: 1px; }
+.plain-list .src { color: var(--ink-2); }
+
+/* Contact ----------------------------------------------------------------- */
+.contact { display: flex; flex-direction: column; gap: 22px; }
+.mail-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+.mail {
+  font-size: clamp(1.45rem, 4.4vw, 2.75rem); font-weight: 750; font-stretch: 112%; letter-spacing: -.01em;
+  color: var(--ink); text-decoration: underline; text-decoration-color: var(--yellow);
+  text-decoration-thickness: 4px; text-underline-offset: 6px; overflow-wrap: anywhere;
+}
+.mail:hover { background: var(--yellow); text-decoration-color: var(--ink); }
+.copy-status { font-size: .9375rem; color: var(--ink-2); min-height: 1.4em; }
+.channels { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 28px; margin: 0; }
+.channels div { padding: 12px 0; border-top: 1px solid var(--line); }
+.channels dt { font-size: .875rem; color: var(--ink-2); }
+.channels dd { margin: 2px 0 0; font-weight: 600; overflow-wrap: anywhere; }
+@media (min-width: 760px) { .channels { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* Footer ------------------------------------------------------------------ */
+.foot {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px;
+  padding-top: 64px; padding-bottom: 40px; font-size: .9375rem; color: var(--ink-2);
+}
+.foot a { color: var(--ink); font-weight: 600; }
+
+/* ==========================================================================
+   Motion and print
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .arm-target { transition: none; }
+}
+@media print {
+  body { background: #fff; font-size: 10.5pt; }
+  .nav, .skip, .hero-fig, .media, .actions, .mail-row button, .copy-status, .foot a, .ptm-video { display: none !important; }
+  .panel { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+  .sec { padding-top: 18pt; }
+  .rig { gap: 8px; }
+  .rig > * { grid-column: span 12 !important; }
+  a { text-decoration: none; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ======================================================================
+     NAVIGATION
+     The square mark is a real ArUco marker (4x4 dictionary, id 13 — M is
+     the 13th letter). OpenCV detects it.
+     ====================================================================== -->
+<header class="nav" data-nav>
+  <div class="nav-in wrap">
+    <a class="brand" href="#top" title="ArUco marker 13 (M is the 13th letter)">
+      <svg viewBox="0 0 6 6" shape-rendering="crispEdges" aria-hidden="true"><rect width="6" height="6" fill="currentColor"/><path fill="#fff" d="M3 1h1v2H3zM1 2h1v1H1zM1 4h4v1H1z"/></svg>
+      <span>Manish Kumar Milan</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links"><span aria-hidden="true"></span>Menu</button>
+    <nav id="nav-links" class="nav-links" aria-label="Sections">
+      <a href="#machine">Page turner</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-y btn-sm" href="assets/Manish_Kumar_Milan_Resume.pdf" download>Résumé</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ======================================================================
+     HERO
+     ====================================================================== -->
+<section id="top" class="hero wrap" aria-label="Introduction">
+  <div class="rig">
+    <div class="panel hero-text lg-7">
+      <div>
+        <h1 class="h-name">Manish Kumar Milan</h1>
+        <p class="lede">I build robots across the whole stack: the pneumatics and embedded control that move them, the cameras that let them see, and the learning that decides what they do.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-y" href="assets/Manish_Kumar_Milan_Resume.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>
+          Download résumé
+        </a>
+        <a class="btn" href="mailto:mkm16207@gmail.com">Email</a>
+        <a class="btn" href="https://github.com/mkm0702" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <a class="btn" href="https://www.linkedin.com/in/manish-kumar-milan/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <figure class="panel hero-fig lg-5">
+      <!-- Live inverse kinematics. All geometry is in SVG units (1 unit = 1 mm in the readout). -->
+      <svg id="arm" class="arm" viewBox="0 0 560 420" role="img" aria-labelledby="arm-title">
+        <title id="arm-title">Two-link robot arm that reaches for your pointer using inverse kinematics</title>
+        <path class="arm-reach" d="M495 352A305 305 0 0 0 -115 352"/>
+        <line class="arm-ground" x1="24" y1="374" x2="536" y2="374"/>
+        <path class="arm-hatch" d="M150 374l-9 10M160 374l-9 10M170 374l-9 10M180 374l-9 10M190 374l-9 10M200 374l-9 10M210 374l-9 10M220 374l-9 10M230 374l-9 10"/>
+        <line class="arm-ann arm-dash" x1="190" y1="352" x2="278" y2="352"/>
+        <path id="arm-ink" class="arm-ink" d="M320 302L320 202L375 267L430 202L430 302"/>
+        <path id="arm-a1" class="arm-ann" d="M242 352A52 52 0 0 0 181 300.8"/>
+        <line id="arm-ext" class="arm-ann arm-dash" x1="160.5" y1="184.6" x2="150.4" y2="127.5"/>
+        <path id="arm-a2" class="arm-ann" d="M153.6 145.2A40 40 0 0 1 199.9 191.5"/>
+        <path class="arm-metal" d="M158 374L166 344H214L222 374Z"/>
+        <line id="arm-l1o" class="arm-link-o" stroke-width="28" x1="190" y1="352" x2="160.5" y2="184.6"/>
+        <line id="arm-l1i" class="arm-link-i" stroke-width="22" x1="190" y1="352" x2="160.5" y2="184.6"/>
+        <circle class="arm-metal" cx="190" cy="352" r="17"/>
+        <circle class="arm-bolt" cx="190" cy="352" r="5"/>
+        <line id="arm-l2o" class="arm-link-o" stroke-width="22" x1="160.5" y1="184.6" x2="254" y2="201.1"/>
+        <line id="arm-l2i" class="arm-link-i" stroke-width="16" x1="160.5" y1="184.6" x2="254" y2="201.1"/>
+        <g id="arm-j2" transform="translate(160.5 184.6)"><circle class="arm-metal" r="13"/><circle class="arm-bolt" r="4"/></g>
+        <g id="arm-tool" transform="translate(293.4 208) rotate(10)">
+          <rect class="arm-metal" x="-42" y="-11" width="14" height="22" rx="2"/>
+          <rect class="arm-metal" x="-30" y="-14" width="7" height="28"/>
+          <rect class="arm-metal" x="-24" y="-14" width="22" height="5"/>
+          <rect class="arm-metal" x="-24" y="9" width="22" height="5"/>
+        </g>
+        <g id="arm-target" class="arm-target"><circle r="9"/><path d="M-17 0h9M8 0h9M0-17v9M0 8v9"/></g>
+        <text id="arm-t1" class="arm-theta" x="237.6" y="295.3">θ<tspan font-size="12" dy="5">1</tspan></text>
+        <text id="arm-t2" class="arm-theta" x="202.9" y="142.2">θ<tspan font-size="12" dy="5">2</tspan></text>
+      </svg>
+      <figcaption class="fig-cap">
+        <span>A two-link arm running inverse kinematics in your browser. Move your pointer over it, or tap, and it reaches for that point.</span>
+        <span class="readout" aria-hidden="true"><span>Shoulder <b data-q1>100.0</b>°</span><span>Elbow <b data-q2>−110.0</b>°</span></span>
+        <button class="link-btn" type="button" data-replay>Replay drawing</button>
+      </figcaption>
+    </figure>
+
+    <div class="panel pad glance sm-6 lg-3"><p><strong>Studying</strong> for an M.Tech in Robotics at IIT Jodhpur, 2025 to present. CGPA 7.68.</p></div>
+    <div class="panel pad glance sm-6 lg-3"><p><strong>Researching</strong> human-in-the-loop RL for robotic disassembly, advised by Dr. Roshan Kumar Hota.</p></div>
+    <div class="panel pad glance sm-6 lg-3"><p><strong>Built</strong> a notebook page-turning and scanning machine as an intern at Skillonation Edtech.</p></div>
+    <div class="panel pad glance sm-6 lg-3"><p><strong>Graduated</strong> with a B.Tech in Electronics and Communication from Assam University, 2024.</p></div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     FEATURED: PAGE-TURNING MACHINE
+     VIDEO: put your file at  assets/videos/ptm.mp4  (optional poster:
+     assets/videos/ptm.jpg). It appears automatically; nothing else to edit.
+     Prefer YouTube or Google Drive? Replace data-video with
+     data-youtube="VIDEO_ID" or data-drive="FILE_ID".
+     ====================================================================== -->
+<section id="machine" class="sec" aria-labelledby="machine-title">
+  <header class="sec-head wrap">
+    <h2 id="machine-title" class="h2">Notebook page-turning and scanning machine</h2>
+    <p class="sec-sub">Internship build at Skillonation Edtech, Jodhpur.</p>
+  </header>
+  <div class="wrap">
+    <div class="rig">
+      <figure class="panel ptm-video md-12 lg-8" style="margin:0">
+        <div class="media" data-video="assets/videos/ptm.mp4" data-poster="assets/videos/ptm.jpg" data-fit="natural" data-title="The page-turning machine running a scan cycle">
+          <div class="media-ph">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="9" width="40" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M20 17.5v13l11-6.5z" fill="currentColor"/></svg>
+            <p>Video of the machine running a scan cycle is coming soon.</p>
+          </div>
+        </div>
+      </figure>
+
+      <div class="panel pad ptm-note md-12 lg-4">
+        <p class="lede">A machine that scans a notebook page by page with nobody turning the pages.</p>
+        <p>I designed and built it from scratch as a Robotics and Embedded Intern: the ESP32 control system, the pneumatics, the stepper-driven turning mechanism, sensor interfacing and a dual-camera capture pipeline on a Jetson Nano. It was built for a target of 50 pages a minute.</p>
+        <p class="when">July – August 2026</p>
+        <p class="links"><a href="#experience">Internship details</a></p>
+      </div>
+
+      <!-- One scan cycle: a real sequence, so the steps are numbered -->
+      <ol class="rig-row" role="list" aria-label="One scan cycle">
+        <li class="panel pad step sm-6 lg-3">
+          <span class="step-n" aria-hidden="true">1</span>
+          <h3 class="h4">Feed</h3>
+          <p>A conveyor carries the notebook in and stops when the proximity sensor sees it.</p>
+        </li>
+        <li class="panel pad step sm-6 lg-3">
+          <span class="step-n" aria-hidden="true">2</span>
+          <h3 class="h4">Lift</h3>
+          <p>A Bernoulli gripper on a pneumatic actuator lifts the next page.</p>
+        </li>
+        <li class="panel pad step sm-6 lg-3">
+          <span class="step-n" aria-hidden="true">3</span>
+          <h3 class="h4">Turn</h3>
+          <p>A stepper-driven knife sweeps the page over.</p>
+        </li>
+        <li class="panel pad step sm-6 lg-3">
+          <span class="step-n" aria-hidden="true">4</span>
+          <h3 class="h4">Capture</h3>
+          <p>Two IMX477 cameras on a Jetson Nano grab the pages when the ESP32 triggers them over UART.</p>
+        </li>
+      </ol>
+
+      <div class="panel pad spec md-6">
+        <h3 class="h4">Pneumatics</h3>
+        <p>Janatics proportional pressure regulator, SMC ZK2 vacuum ejector and solenoid valves switched by the ESP32.</p>
+      </div>
+      <div class="panel pad spec md-6">
+        <h3 class="h4">Sensing and I/O</h3>
+        <p>CEYONE photoelectric sensors and industrial parts wired to the ESP32 through relay and optocoupler level-shifting circuits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     PROJECTS
+     Each card has a video slot that stays hidden until the file exists.
+     Drop these into assets/videos/ and they appear on their own:
+       hil-serl.mp4   bimanual-vla.mp4   amr.mp4   code-as-policy.mp4   world-models.mp4
+     ====================================================================== -->
+<section id="projects" class="sec" aria-labelledby="projects-title">
+  <header class="sec-head wrap">
+    <h2 id="projects-title" class="h2">Projects</h2>
+    <p class="sec-sub">Robot learning, manipulation and navigation, on real hardware wherever possible.</p>
+  </header>
+  <div class="wrap">
+    <div class="rig">
+
+      <article class="panel proj md-6 lg-7" id="hil-serl">
+        <div class="media" data-video="assets/videos/hil-serl.mp4" data-poster="assets/videos/hil-serl.jpg" data-empty="hide" data-title="HIL-SERL disassembly on the AgileX Piper X"></div>
+        <div class="proj-body">
+          <h3 class="h3">Taking apart electronics with human-in-the-loop RL</h3>
+          <p class="proj-sub"><span class="status run">In progress</span><span>M.Tech thesis, IIT Jodhpur. May 2026 – present</span></p>
+          <p>Teaching an AgileX Piper X 6-DOF arm to disassemble consumer electronics with HIL-SERL, a sample-efficient reinforcement-learning method in which a person can step in and correct the robot while it trains. Advised by Dr. Roshan Kumar Hota.</p>
+          <ul class="facts">
+            <li>Built the full stack: a RealSense D435i wrist camera, an overhead RGB camera and gamepad teleoperation for collecting demonstrations.</li>
+            <li>Teleoperation, demonstration data and a reward classifier are done. Online RL with SAC and RLPD on pick-and-place disassembly primitives is running now.</li>
+          </ul>
+          <ul class="tags" aria-label="Tools"><li>ROS2</li><li>Python</li><li>PyTorch</li><li>SAC / RLPD</li><li>OpenCV</li><li>RealSense SDK</li><li>AgileX Piper SDK</li></ul>
+          <p class="proj-links"><a href="https://github.com/mkm0702/Robotic-disassembly-of-electronic-equipment-with-hilserl" target="_blank" rel="noopener">Code on GitHub</a></p>
+        </div>
+      </article>
+
+      <article class="panel proj md-6 lg-5" id="bimanual">
+        <div class="media" data-video="assets/videos/bimanual-vla.mp4" data-poster="assets/videos/bimanual-vla.jpg" data-empty="hide" data-title="Two SO-101 arms running the fine-tuned SmolVLA policy"></div>
+        <div class="proj-body">
+          <h3 class="h3">Two-arm handover with a fine-tuned VLA</h3>
+          <p class="proj-sub"><span class="status">Runs on hardware</span><span>Dec 2025 – Apr 2026</span></p>
+          <p>The right arm passes a red bowl to the left arm, which then picks up a box and places it in a green bowl. The left arm can only act once the right arm has finished, so one policy has to coordinate both arms over time.</p>
+          <ul class="facts">
+            <li>Collected teleoperated demonstrations on two SO-101 arms with LeRobot and fine-tuned SmolVLA into an end-to-end policy, from RGB images to joint-space actions.</li>
+            <li>Deployed on the physical arms with consistent task completion.</li>
+          </ul>
+          <ul class="tags" aria-label="Tools"><li>SmolVLA</li><li>LeRobot</li><li>Python</li><li>PyTorch</li><li>HuggingFace Transformers</li><li>SO-101</li></ul>
+          <p class="proj-links">
+            <a href="https://github.com/mkm0702/SO101-VLA-bimanual" target="_blank" rel="noopener">Code on GitHub</a>
+            <a href="https://drive.google.com/drive/folders/133IwG1ftPNzQreWRQHF9spRz7sBlje3o" target="_blank" rel="noopener">Demo videos on Google Drive</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="panel proj proj-wide lg-12" id="amr">
+        <div class="proj-main">
+          <div class="media" data-video="assets/videos/amr.mp4" data-poster="assets/videos/amr.jpg" data-empty="hide" data-title="Autonomous mobile robot mapping and docking"></div>
+          <div class="proj-body">
+            <h3 class="h3">An autonomous mobile robot, from CAD to docking</h3>
+            <p class="proj-sub"><span class="status">Runs on hardware</span><span>Jan – May 2025</span></p>
+            <p>A custom differential-drive robot that maps, navigates and docks on its own, with the whole ROS2 stack running on a Raspberry Pi.</p>
+            <ul class="tags" aria-label="Tools"><li>ROS2</li><li>Nav2</li><li>SLAM Toolbox</li><li>RPLidar</li><li>OpenCV</li><li>SolidWorks</li><li>Raspberry Pi</li></ul>
+            <p class="proj-links"><a href="https://github.com/mkm0702/Autonomous-Mobile-Robot-" target="_blank" rel="noopener">Code on GitHub</a></p>
+          </div>
+        </div>
+        <div class="caps">
+          <div class="cap"><h4 class="h4">Model</h4><p>Designed the chassis in SolidWorks, converted it to URDF/XACRO, and checked joints, TF frames and sensor placement in RViz2.</p></div>
+          <div class="cap"><h4 class="h4">Teleoperate</h4><p>Joystick control through teleop_twist_joy and custom ROS2 nodes on /cmd_vel, with motor response and odometry validated on the robot.</p></div>
+          <div class="cap"><h4 class="h4">Solve mazes</h4><p>Reactive navigation that reads RPLidar scans to find walls and get through a maze with no map.</p></div>
+          <div class="cap"><h4 class="h4">Map</h4><p>SLAM Toolbox with an RPLidar A-series for live 2D occupancy grids, with tuned scan matching and loop closure.</p></div>
+          <div class="cap"><h4 class="h4">Navigate</h4><p>Nav2 with AMCL on saved maps; tuned the DWB local planner and costmap inflation for collision-free goals.</p></div>
+          <div class="cap"><h4 class="h4">Dock</h4><p>Estimates an ArUco marker's pose with cv2.aruco and turns the alignment error into corrective commands.</p></div>
+          <div class="cap"><h4 class="h4">Run on board</h4><p>systemd launch services on the Raspberry Pi, tuned RPLidar driver parameters, and the full pipeline validated in a real environment.</p></div>
+        </div>
+      </article>
+
+      <article class="panel proj md-6 lg-6" id="code-as-policy">
+        <div class="media" data-video="assets/videos/code-as-policy.mp4" data-poster="assets/videos/code-as-policy.jpg" data-empty="hide" data-title="Coding agent driving in simulation"></div>
+        <div class="proj-body">
+          <h3 class="h3">A coding agent as a driving policy</h3>
+          <p class="proj-sub"><span class="status run">In progress</span><span>Oct 2026 – present</span></p>
+          <p>Instead of a pre-trained VLA, a coding agent acts as a zero-shot visuomotor controller, following the code-as-policy approach of NVIDIA's CAPX (2026).</p>
+          <ul class="facts">
+            <li>A lightweight 3D simulator exposes top-down, chase and front camera APIs. The agent calibrates the physics and sends motor commands (v<sub>x</sub>, v<sub>y</sub>, <i style="font-family:var(--math)">ω</i>) through GET and POST calls only; it never sees the simulator's code.</li>
+            <li>Evaluating it under randomized goals and moving obstacles, with a CARLA version planned.</li>
+          </ul>
+          <ul class="tags" aria-label="Tools"><li>SmolVLA</li><li>ROS2</li><li>CARLA</li><li>Claude Code</li></ul>
+          <!-- When the repo is public, add:
+          <p class="proj-links"><a href="https://github.com/mkm0702/REPO" target="_blank" rel="noopener">Code on GitHub</a></p> -->
+        </div>
+      </article>
+
+      <article class="panel proj md-6 lg-6" id="world-models">
+        <div class="media" data-video="assets/videos/world-models.mp4" data-poster="assets/videos/world-models.jpg" data-empty="hide" data-title="World model rollouts"></div>
+        <div class="proj-body">
+          <h3 class="h3">World models for manipulation, built from scratch</h3>
+          <p class="proj-sub"><span class="status run">In progress</span><span>Nov 2026 – present</span></p>
+          <p>Implementing world models from first principles along the simulator–renderer–planner taxonomy, starting with Mini-Dreamer (a continuous latent simulator trained with reconstruction) and Mini-IRIS (a token-space agent for video games).</p>
+          <ul class="facts">
+            <li>Comparing latent-space prediction (JEPA-style, no pixel reconstruction) with pixel-space models such as IRIS on representation, training signal and inference latency.</li>
+            <li>Goal: a learned world model on the SO-101 arm that plans in imagination instead of real-world rollouts, alongside the HIL-SERL thesis.</li>
+          </ul>
+          <ul class="tags" aria-label="Tools"><li>PyTorch</li><li>Dreamer</li><li>IRIS</li><li>DINO-WM</li><li>SO-101</li></ul>
+          <!-- When the repo is public, add:
+          <p class="proj-links"><a href="https://github.com/mkm0702/REPO" target="_blank" rel="noopener">Code on GitHub</a></p> -->
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     EXPERIENCE
+     ====================================================================== -->
+<section id="experience" class="sec" aria-labelledby="experience-title">
+  <header class="sec-head wrap"><h2 id="experience-title" class="h2">Experience</h2></header>
+  <div class="wrap">
+    <div class="rig">
+      <article class="panel pad job lg-8">
+        <h3 class="h3">Robotics and Embedded Intern</h3>
+        <p class="job-org">Skillonation Edtech, Jodhpur. July – August 2026</p>
+        <ul class="facts">
+          <li>Designed and built an automated notebook page-turning and scanning machine from scratch, targeting 50 pages a minute.</li>
+          <li>Engineered the full hardware stack: ESP32 control, a conveyor with proximity-sensor stops, a Bernoulli gripper on a pneumatic actuator, a stepper-driven page-turning knife and solenoid-valve pneumatics.</li>
+          <li>Integrated two IMX477 CSI cameras on a Jetson Nano with a UART-triggered OpenCV capture pipeline.</li>
+          <li>Interfaced a Janatics proportional pressure regulator, an SMC ZK2 vacuum ejector and CEYONE photoelectric sensors with the ESP32 through relay and optocoupler level-shifting circuits.</li>
+        </ul>
+        <p class="links">
+          <a href="#machine">See the machine</a>
+          <a href="https://drive.google.com/drive/folders/1mFAcjf0gpzRZaV7FWZ-hDkZMQaoK39nU?usp=drive_link" target="_blank" rel="noopener">Internship folder on Google Drive</a>
+        </p>
+      </article>
+      <article class="panel pad job lg-4">
+        <h3 class="h3">Department Representative</h3>
+        <p class="job-org">Electronics and Communication Engineering, Assam University, Silchar. August 2022 – August 2023</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     EDUCATION
+     ====================================================================== -->
+<section id="education" class="sec" aria-labelledby="education-title">
+  <header class="sec-head wrap"><h2 id="education-title" class="h2">Education</h2></header>
+  <div class="wrap">
+    <div class="rig">
+      <div class="panel pad lg-7">
+        <ol class="edu" role="list">
+          <li>
+            <span class="yr">2025 – present</span>
+            <div><h3 class="h4">M.Tech, Robotics</h3><p class="where">Indian Institute of Technology Jodhpur, Department of Mechanical Engineering</p></div>
+            <span class="score">CGPA 7.68 <span class="muted">(current)</span></span>
+          </li>
+          <li>
+            <span class="yr">2020 – 2024</span>
+            <div><h3 class="h4">B.Tech, Electronics and Communication Engineering</h3><p class="where">Assam University, Silchar</p></div>
+            <span class="score">CGPA 7.61</span>
+          </li>
+          <li>
+            <span class="yr">2020</span>
+            <div><h3 class="h4">Senior Secondary (Class XII)</h3><p class="where">CBSE</p></div>
+            <span class="score">78%</span>
+          </li>
+          <li>
+            <span class="yr">2017</span>
+            <div><h3 class="h4">Secondary (Class X)</h3><p class="where">CBSE</p></div>
+            <span class="score">CGPA 9.8</span>
+          </li>
+        </ol>
+      </div>
+      <div class="panel pad courses lg-5">
+        <h3 class="h4">Key coursework</h3>
+        <ul class="plain-list">
+          <li>Robot Learning</li>
+          <li>Advanced Robotic Manipulation</li>
+          <li>Introduction to Robotics</li>
+          <li>Mobile Robots</li>
+          <li>Computer Vision</li>
+          <li>Machine Learning</li>
+          <li>Deep Learning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     SKILLS
+     ====================================================================== -->
+<section id="skills" class="sec" aria-labelledby="skills-title">
+  <header class="sec-head wrap"><h2 id="skills-title" class="h2">Skills</h2></header>
+  <div class="wrap">
+    <div class="rig">
+      <div class="panel pad skill sm-6 lg-3"><h3 class="h4">Programming</h3><p>Python, C/C++, MATLAB, Arduino (ESP32)</p></div>
+      <div class="panel pad skill sm-6 lg-3"><h3 class="h4">Robot frameworks</h3><p>ROS2 Humble, LeRobot, PyAgxArm SDK, Piper SDK</p></div>
+      <div class="panel pad skill sm-6 lg-3"><h3 class="h4">ML and RL</h3><p>PyTorch, Stable-Baselines3, HuggingFace Transformers, OpenCV</p></div>
+      <div class="panel pad skill sm-6 lg-3"><h3 class="h4">Simulation</h3><p>MuJoCo, Gazebo, RViz, Isaac Sim, Tinkercad</p></div>
+      <div class="panel pad skill skill-wide sm-6 lg-6"><h3 class="h4">Robots and embedded hardware</h3><p>AgileX Piper X, SO-101, ESP32, Jetson Nano and Orin, RealSense D435i, IMX477 CSI camera, Feetech STS3215 servos</p></div>
+      <div class="panel pad skill sm-6 lg-3"><h3 class="h4">Pneumatics and actuation</h3><p>Janatics PPR, SMC ZK2 vacuum ejector, solenoid valves, Bernoulli gripper, stepper drivers (Leadshine CS-D508)</p></div>
+      <div class="panel pad skill sm-6 lg-3"><h3 class="h4">Tools</h3><p>Git, SolidWorks, Linux (Ubuntu), Docker, Overleaf</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     RECOGNITION
+     ====================================================================== -->
+<section id="recognition" class="sec" aria-labelledby="recognition-title">
+  <header class="sec-head wrap"><h2 id="recognition-title" class="h2">Recognition</h2></header>
+  <div class="wrap">
+    <div class="rig">
+      <div class="panel pad md-6">
+        <h3 class="h3">Runner-up, Smart India Hackathon 2023</h3>
+        <p class="muted" style="margin-top:10px">MHRD, Government of India. Developed an OCR-based automated attendance system.</p>
+      </div>
+      <div class="panel pad md-6">
+        <h3 class="h3" style="margin-bottom:14px">Certifications</h3>
+        <ul class="plain-list">
+          <li>Modern Robot Learning<span class="src">, Vizura AI</span></li>
+          <li>ROS2 MoveIt2: Control a Robotic Arm<span class="src">, Udemy</span></li>
+          <li>ROS2 for Beginners Level 2: TF, URDF, RViz, Gazebo<span class="src">, Udemy</span></li>
+          <li>Arduino Programming with Tinkercad<span class="src">, Udemy</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     CONTACT
+     ====================================================================== -->
+<section id="contact" class="sec" aria-labelledby="contact-title">
+  <header class="sec-head wrap"><h2 id="contact-title" class="h2">Contact</h2></header>
+  <div class="wrap">
+    <div class="rig">
+      <div class="panel pad contact lg-12">
+        <p class="muted">Email is the quickest way to reach me.</p>
+        <div class="mail-row">
+          <a class="mail" href="mailto:mkm16207@gmail.com">mkm16207@gmail.com</a>
+          <button class="btn" type="button" data-copy="mkm16207@gmail.com">Copy email</button>
+          <span class="copy-status" role="status" aria-live="polite" data-copy-status></span>
+        </div>
+        <dl class="channels">
+          <div><dt>Phone</dt><dd><a href="tel:+917427845699">+91 74278 45699</a></dd></div>
+          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/manish-kumar-milan/" target="_blank" rel="noopener">manish-kumar-milan</a></dd></div>
+          <div><dt>GitHub</dt><dd><a href="https://github.com/mkm0702" target="_blank" rel="noopener">mkm0702</a></dd></div>
+          <div><dt>Institute email</dt><dd><a href="mailto:m25irm005@iitj.ac.in">m25irm005@iitj.ac.in</a></dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot wrap">
+  <p>© <span data-year>2026</span> Manish Kumar Milan</p>
+  <a href="#top">Back to top</a>
+</footer>
+
+<script>
+(() => {
+  'use strict';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+  $$('[data-year]').forEach(el => { el.textContent = String(new Date().getFullYear()); });
+
+  /* ---------- Navigation: mobile menu + current section ---------- */
+  const nav = $('[data-nav]');
+  const toggle = $('.nav-toggle', nav);
+  const setOpen = open => { nav.classList.toggle('is-open', open); toggle.setAttribute('aria-expanded', String(open)); };
+  toggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+  $$('.nav-links a', nav).forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+
+  if ('IntersectionObserver' in window) {
+    const links = $$('.nav-links a[href^="#"]', nav);
+    const byId = new Map(links.map(a => [a.hash.slice(1), a]));
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        links.forEach(a => a.removeAttribute('aria-current'));
+        const a = byId.get(en.target.id);
+        if (a) a.setAttribute('aria-current', 'true');
+      });
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    $$('main > section[id]').forEach(s => spy.observe(s));
+  }
+
+  /* ---------- Copy email ---------- */
+  $$('[data-copy]').forEach(btn => {
+    const status = btn.parentElement.querySelector('[data-copy-status]');
+    let timer = 0;
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        if (status) status.textContent = 'Copied';
+      } catch (_) {
+        if (status) status.textContent = 'Your browser blocked copying. Select the address instead.';
+      }
+      clearTimeout(timer);
+      timer = setTimeout(() => { if (status) status.textContent = ''; }, 2600);
+    });
+  });
+
+  /* ---------- Video slots ----------
+     data-video="path.mp4"   local file (shown only once it exists)
+     data-youtube="ID"        YouTube video
+     data-drive="FILE_ID"     Google Drive file shared as "Anyone with the link"
+     data-empty="hide"        hide the slot when there is no video yet           */
+  const vidIO = (!reduceMotion && 'IntersectionObserver' in window)
+    ? new IntersectionObserver(entries => entries.forEach(en => {
+        const v = en.target;
+        if (en.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+        else v.pause();
+      }), { threshold: 0.35 })
+    : null;
+
+  const exists = async url => {
+    if (!/^https?:$/.test(location.protocol)) return null;   // file:// preview: let the video element decide
+    try { const r = await fetch(url, { method: 'HEAD', cache: 'no-cache' }); return r.ok; }
+    catch (_) { return null; }
+  };
+  const ready = slot => slot.classList.add('is-ready');
+
+  const shape = (slot, v) => {
+    const w = v.videoWidth, h = v.videoHeight;
+    if (!w || !h) return;
+    const r = w / h;
+    if (slot.dataset.fit === 'natural') {
+      slot.style.aspectRatio = String(Math.min(2.4, Math.max(0.75, r)));
+      if (r < 0.75) v.classList.add('contain');
+      return;
+    }
+    const box = slot.clientWidth / Math.max(1, slot.clientHeight);
+    if (Math.abs(r - box) / box > 0.2) v.classList.add('contain');   // portrait clips: letterbox, don't crop
+  };
+
+  const mountVideo = async slot => {
+    const src = slot.dataset.video;
+    const found = await exists(src);
+    if (found === false) return;
+    const v = document.createElement('video');
+    v.muted = true; v.loop = true; v.playsInline = true; v.controls = true; v.preload = 'metadata';
+    v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+    if (slot.dataset.title) v.setAttribute('aria-label', slot.dataset.title);
+    const poster = slot.dataset.poster;   // optional; only used if the image exists
+    if (poster) exists(poster).then(ok => { if (ok !== false) v.poster = poster; });
+    v.addEventListener('loadedmetadata', () => { ready(slot); shape(slot, v); }, { once: true });
+    v.addEventListener('error', () => { v.remove(); slot.classList.remove('is-ready'); }, { once: true });
+    v.src = src;
+    slot.appendChild(v);
+    if (found) ready(slot);
+    if (vidIO) vidIO.observe(v);
+  };
+
+  const mountEmbed = slot => {
+    const yt = slot.dataset.youtube;
+    const id = encodeURIComponent(yt || slot.dataset.drive);
+    const thumb = yt ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : `https://drive.google.com/thumbnail?id=${id}&sz=w1280`;
+    const src = yt ? `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`
+                   : `https://drive.google.com/file/d/${id}/preview`;
+    const label = slot.dataset.title || 'Project video';
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'media-play';
+    btn.setAttribute('aria-label', `Play video: ${label}`);
+    const img = document.createElement('img');
+    img.alt = ''; img.loading = 'lazy'; img.decoding = 'async'; img.src = thumb;
+    img.addEventListener('error', () => img.remove(), { once: true });
+    const icon = document.createElement('span'); icon.className = 'media-play-icon';
+    btn.append(img, icon);
+    btn.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = src; f.title = label; f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      btn.replaceWith(f);
+    }, { once: true });
+    slot.appendChild(btn);
+    ready(slot);
+  };
+
+  $$('.media').forEach(slot => {
+    if (slot.dataset.youtube || slot.dataset.drive) mountEmbed(slot);
+    else if (slot.dataset.video) mountVideo(slot);
+  });
+
+  /* ---------- Hero: two-link arm with analytic inverse kinematics ---------- */
+  const svg = document.getElementById('arm');
+  if (svg) initArm(svg);
+
+  function initArm(svg) {
+    const BX = 190, BY = 352;            // shoulder, in SVG units
+    const L1 = 170, L2 = 135, TOOL = 40; // link lengths; gripper length along link 2
+    const RMAX = L1 + L2 - 3, RMIN = Math.abs(L1 - L2) + 8, YMIN = 12;
+    const DEG = 180 / Math.PI;
+    const REST = [100 / DEG, -110 / DEG];
+    const M = [[130, 50], [130, 150], [185, 85], [240, 150], [240, 50]];  // the letter traced on load
+    const SPEED = 190;                   // units per second while tracing
+
+    const el = id => document.getElementById(id);
+    const l1o = el('arm-l1o'), l1i = el('arm-l1i'), l2o = el('arm-l2o'), l2i = el('arm-l2i');
+    const j2 = el('arm-j2'), tool = el('arm-tool'), ink = el('arm-ink'), target = el('arm-target');
+    const a1 = el('arm-a1'), a2 = el('arm-a2'), ext = el('arm-ext'), t1 = el('arm-t1'), t2 = el('arm-t2');
+    const out1 = $('[data-q1]'), out2 = $('[data-q2]'), replay = $('[data-replay]');
+
+    let q = REST.slice(), elbow = -1;
+    let mode = 'idle', t0 = 0, from = null, to = null, dist = 0, goal = null;
+    let raf = 0, last = 0, touchTimer = 0, inkPts = [], lastOut = '';
+
+    const segs = []; let total = 0;
+    for (let i = 1; i < M.length; i++) {
+      const [x0, y0] = M[i - 1], [x1, y1] = M[i], len = Math.hypot(x1 - x0, y1 - y0);
+      segs.push({ x0, y0, x1, y1, len, start: total }); total += len;
+    }
+    const pointAt = d => {
+      for (const s of segs) {
+        if (d <= s.start + s.len) { const u = (d - s.start) / s.len; return [s.x0 + (s.x1 - s.x0) * u, s.y0 + (s.y1 - s.y0) * u]; }
+      }
+      return M[M.length - 1].slice();
+    };
+
+    // Analytic IK. Elbow stays "up": it flips side (with hysteresis) when the target crosses behind the base.
+    const solve = (x, y) => {
+      if (y < YMIN) y = YMIN;
+      let r = Math.hypot(x, y);
+      if (r > RMAX) { x *= RMAX / r; y *= RMAX / r; r = RMAX; }
+      else if (r < RMIN) { x *= RMIN / r; y *= RMIN / r; r = RMIN; }
+      if (x < -18) elbow = 1; else if (x > 18) elbow = -1;
+      const D = Math.max(-1, Math.min(1, (r * r - L1 * L1 - L2 * L2) / (2 * L1 * L2)));
+      const b = elbow * Math.acos(D);
+      const a = Math.atan2(y, x) - Math.atan2(L2 * Math.sin(b), L1 + L2 * Math.cos(b));
+      return { q: [a, b], x, y };
+    };
+
+    const r1 = n => Math.round(n * 10) / 10;
+    const setLine = (n, x1, y1, x2, y2) => {
+      n.setAttribute('x1', r1(x1)); n.setAttribute('y1', r1(y1)); n.setAttribute('x2', r1(x2)); n.setAttribute('y2', r1(y2));
+    };
+    const arcD = (cx, cy, r, s, e) => {
+      const d = e - s;
+      return `M${r1(cx + r * Math.cos(s))} ${r1(cy - r * Math.sin(s))}A${r} ${r} 0 ${Math.abs(d) > Math.PI ? 1 : 0} ${d > 0 ? 0 : 1} ${r1(cx + r * Math.cos(e))} ${r1(cy - r * Math.sin(e))}`;
+    };
+    const fmt = v => (v < 0 ? '\u2212' : '') + Math.abs(v * DEG).toFixed(1);
+
+    const render = () => {
+      const [a, b] = q, ab = a + b;
+      const ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(ab), sb = Math.sin(ab);
+      const ex = BX + L1 * ca, ey = BY - L1 * sa;        // elbow
+      const px = ex + L2 * cb, py = ey - L2 * sb;        // tool centre point
+      const fx = px - TOOL * cb, fy = py + TOOL * sb;    // wrist flange
+      setLine(l1o, BX, BY, ex, ey); setLine(l1i, BX, BY, ex, ey);
+      setLine(l2o, ex, ey, fx, fy); setLine(l2i, ex, ey, fx, fy);
+      j2.setAttribute('transform', `translate(${r1(ex)} ${r1(ey)})`);
+      tool.setAttribute('transform', `translate(${r1(px)} ${r1(py)}) rotate(${r1(-ab * DEG)})`);
+      a1.setAttribute('d', arcD(BX, BY, 52, 0, a));
+      setLine(ext, ex, ey, ex + 58 * ca, ey - 58 * sa);
+      a2.setAttribute('d', arcD(ex, ey, 40, a, ab));
+      t1.setAttribute('x', r1(BX + 74 * Math.cos(a / 2))); t1.setAttribute('y', r1(BY - 74 * Math.sin(a / 2)));
+      t2.setAttribute('x', r1(ex + 60 * Math.cos(a + b / 2))); t2.setAttribute('y', r1(ey - 60 * Math.sin(a + b / 2)));
+      const s = fmt(a) + fmt(b);
+      if (s !== lastOut) { lastOut = s; out1.textContent = fmt(a); out2.textContent = fmt(b); }
+      return [px, py];
+    };
+
+    const inkReset = () => { inkPts = []; ink.setAttribute('d', ''); };
+    const inkAdd = (x, y) => { inkPts.push(`${r1(x)} ${r1(y)}`); ink.setAttribute('d', 'M' + inkPts.join('L')); };
+    const ease = t => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    const lerpQ = (A, B, t) => [A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t];
+
+    const step = (now, dt) => {
+      if (mode === 'pause') {
+        if (now - t0 > 450) { mode = 'approach'; t0 = now; from = q.slice(); to = solve(M[0][0], M[0][1]).q; }
+      } else if (mode === 'approach') {
+        const t = Math.min(1, (now - t0) / 750);
+        q = lerpQ(from, to, ease(t));
+        if (t >= 1) { mode = 'draw'; dist = 0; inkReset(); const p = render(); inkAdd(p[0], p[1]); return; }
+      } else if (mode === 'draw') {
+        dist = Math.min(total, dist + SPEED * dt);
+        const [x, y] = pointAt(dist);
+        q = solve(x, y).q;
+        const p = render(); inkAdd(p[0], p[1]);
+        if (dist >= total) { mode = 'retract'; t0 = now; from = q.slice(); to = REST; }
+        return;
+      } else if (mode === 'retract') {
+        const t = Math.min(1, (now - t0) / 900);
+        q = lerpQ(from, to, ease(t));
+        if (t >= 1) mode = 'idle';
+      } else if (mode === 'follow' || mode === 'home') {
+        const g = (mode === 'follow' && goal) ? goal : REST;
+        const k = 1 - Math.exp(-dt * 9);               // first-order lag, like a real servo loop
+        q = [q[0] + (g[0] - q[0]) * k, q[1] + (g[1] - q[1]) * k];
+        if (mode === 'home' && Math.abs(g[0] - q[0]) + Math.abs(g[1] - q[1]) < 1e-3) { q = REST.slice(); mode = 'idle'; }
+      }
+      render();
+    };
+
+    const tick = now => {
+      const dt = Math.min(0.05, Math.max(0.001, (now - last) / 1000));
+      last = now;
+      step(now, dt);
+      raf = mode === 'idle' ? 0 : requestAnimationFrame(tick);
+    };
+    const run = () => { if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); } };
+    const intro = () => { inkReset(); q = REST.slice(); elbow = -1; mode = 'pause'; t0 = performance.now(); run(); };
+
+    const toLocal = e => {
+      const m = svg.getScreenCTM();
+      if (!m) return null;
+      const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(m.inverse());
+      return [p.x - BX, BY - p.y];
+    };
+    const aim = e => {
+      const p = toLocal(e);
+      if (!p) return;
+      const s = solve(p[0], p[1]);
+      goal = s.q;
+      target.setAttribute('transform', `translate(${r1(BX + s.x)} ${r1(BY - s.y)})`);
+      target.classList.add('on');
+      if (reduceMotion) { q = goal.slice(); render(); return; }
+      mode = 'follow'; run();
+    };
+    const release = () => {
+      target.classList.remove('on'); goal = null;
+      if (reduceMotion) { q = REST.slice(); render(); return; }
+      mode = 'home'; run();
+    };
+
+    svg.addEventListener('pointermove', e => { if (e.pointerType !== 'touch') aim(e); });
+    svg.addEventListener('pointerleave', e => { if (e.pointerType !== 'touch') release(); });
+    svg.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'touch') return;
+      aim(e);
+      clearTimeout(touchTimer);
+      touchTimer = setTimeout(release, 2600);
+    });
+
+    render();
+    if (reduceMotion) { if (replay) replay.hidden = true; return; }   // keep the static drawing
+    if (replay) replay.addEventListener('click', intro);
+    inkReset();
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, o) => {
+        if (entries.some(en => en.isIntersecting)) { o.disconnect(); intro(); }
+      }, { threshold: 0.5 });
+      io.observe(svg);
+    } else {
+      intro();
+    }
+  }
+})();
+</script>
+</body>
+</html>
